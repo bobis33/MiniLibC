@@ -7,19 +7,22 @@ section .text
         xor rax, rax
         mov rcx, 0x0
         mov r8, 0x0
+        mov r9, 0x0
 
     .loop:
         cmp byte [rdi + rcx], 0x0
         je .end
         cmp byte [rsi + rcx], 0x0
         je .end
-        mov r8b, byte [rdi + rcx]
-        cmp byte [rsi + rcx], r8b
+        mov r8b, byte [rsi + rcx]
+        cmp byte [rdi + rcx], r8b
         jne .end
         inc rcx
         jmp .loop
 
     .end:
-        mov rax, [rdi + rcx]
-        sub rax, [rsi + rcx]
+        mov r8b, byte [rdi + rcx]
+        mov r9b, byte [rsi + rcx]
+        sub r8, r9
+        mov rax, r8
         ret

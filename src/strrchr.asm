@@ -10,10 +10,10 @@ strrchr:
         call strlen wrt ..plt
 
     .loop:
-        cmp rax, 0x0
-        je .end
         cmp byte [rdi + rax], sil
         je .found
+        cmp rax, 0x0
+        je .end
         sub rax, 1
         jmp .loop
 
